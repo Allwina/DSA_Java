@@ -1,0 +1,20 @@
+//HashSet usage
+import java.util.*;
+
+public class Solution {
+    public static void main(String args[] ) throws Exception {
+        HashSet<Integer> H=new HashSet<>();
+        Scanner in=new Scanner(System.in);
+        int n=in.nextInt();
+        for(int i=0;i<n;i++)
+        {
+            H.add(in.nextInt());
+        }
+        for(int i:H)
+        {
+           System.out.print(i+" ");
+        }
+      
+    
+    }
+}
