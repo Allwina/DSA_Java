@@ -1,0 +1,119 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Solution {
+    public static void main(String args[]) throws Exception {
+        Scanner in=new Scanner(System.in);
+        ArrayList<Player> p=new ArrayList<>();
+        
+     
+        boolean flag=true;
+        while(flag)
+        {
+            int id=in.nextInt();in.nextLine();
+            String name=in.nextLine();
+            String country=in.nextLine();
+            int goals=in.nextInt();in.nextLine();
+            flag=in.nextBoolean();in.nextLine();
+            p.add(new Player(id,name,country,goals));
+        }
+        String search=in.nextLine();
+        Player result=findPlayerWithMostGoals(p);
+        System.out.println(result.getId());
+        System.out.println(result.getName());
+        System.out.println(result.getCountry());
+        System.out.println(result.getGoals());
+        Player sc=findPlayerBasedOnCountry(p, search);
+        if(sc==null)
+        {
+            System.out.println("No Player Found");
+        }
+        else
+        {
+        System.out.println(sc.getId());
+        System.out.println(sc.getName());
+        System.out.println(sc.getCountry());
+        System.out.println(sc.getGoals());
+        }
+   
+        
+    }
+    
+    public static Player findPlayerWithMostGoals(ArrayList<Player> players){
+         int max=Integer.MIN_VALUE;
+         Player x=null;
+      
+        for(Player i:players)
+        {
+           
+            if(i.getGoals()>max)
+            {
+                max=i.getGoals();
+                x=i;
+            }
+        }return x;
+        
+    } 
+    
+    public static Player findPlayerBasedOnCountry(ArrayList<Player> players, String country){
+        
+     
+        for(Player i:players)
+        {
+            
+        if(i.getCountry().equalsIgnoreCase(country))
+        {
+            return i;
+        }
+        }return null;
+    }
+}
+
+class Player{
+    
+ 
+    private int id;
+    private String name;
+    private String country;
+    private int goals;
+    Player(int id,String name,String country,int goals)
+    {
+        this.id=id;
+        this.name=name;
+        this.country=country;
+        this.goals=goals;
+    }
+    public int getId()
+    {
+        return id;
+    }
+    public String getName()
+    {
+        return name;
+    }
+    public String getCountry()
+    {
+        return country;
+    }
+    public int getGoals()
+    {
+        return goals;
+    }
+    
+    public void setId(int id)
+    {
+        this.id=id;
+    }
+    public void setName(String name)
+    {
+        this.name=name;
+    }
+    public void setCountry(String country)
+    {
+        this.country=country;
+    }
+    public void setGoals(int goals)
+    {
+        this.goals=goals;
+    }
+}
