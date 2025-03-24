@@ -1,0 +1,23 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in=new Scanner(System.in);
+        ArrayList<Integer> p =new ArrayList<>();
+        while(true)
+        {
+        int n=in.nextInt();
+            if(n!=-1)  
+            {
+                p.add(n);
+            }
+            else
+            {
+                break;
+            }
+        }
+        System.out.println(p);        
+    }
+}
