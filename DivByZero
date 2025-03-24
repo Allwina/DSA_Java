@@ -1,0 +1,30 @@
+import java.io.IOException;
+import java.util.*;
+class Calculator{
+    public static float division(int num1,int num2)
+    {
+        return num1/num2;
+    }
+}
+class Solution extends Calculator{
+    public static void main(String args[])throws IOException
+    {
+       Scanner in=new Scanner(System.in) ;
+       try{
+        int  num1=in.nextInt();in.nextLine();
+        int  num2=in.nextInt();
+        float result=division(num1, num2);
+        System.out.println("Result: "+result);
+       
+       }
+       catch(InputMismatchException e){
+        System.out.println("Error: Input must be an integer.");
+       }
+       catch(ArithmeticException e)
+       {
+        System.out.println("Error: Division by zero is not allowed.");
+       }
+    
+       
+    }
+}
