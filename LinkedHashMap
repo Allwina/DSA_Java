@@ -1,0 +1,27 @@
+//Implementation of LinkedHashMap
+import java.util.*;
+
+public class Solution {
+   public static void main(String[] args) {
+    Scanner in=new Scanner(System.in);
+    Map<String,Integer> map=new LinkedHashMap<>();
+    String input=in.nextLine().toLowerCase().replace(".", "");
+    map=countWordFrequency(input);
+    for(Map.Entry<String, Integer> e:map.entrySet())
+    {
+      System.out.println(e.getKey()+": "+e.getValue());  
+    }
+      
+   }
+    
+   private static Map<String, Integer> countWordFrequency(String input) {
+        Map<String,Integer> map=new LinkedHashMap<>();
+       
+       String[] words=input.split(" ");
+       
+       for (String w : words) {
+        map.put(w, map.getOrDefault(w,0)+1);
+       }
+       return map;
+   }
+}
