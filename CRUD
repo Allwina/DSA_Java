@@ -1,0 +1,72 @@
+import java.sql.*;
+public class Main {
+
+	
+	public static void main(String[] args) throws SQLException {
+		Connection dbObj=DBConnection.getConnection();         
+	
+		String insertsql="insert into Customer values(?,?,?)";
+		insertData(dbObj,insertsql);		
+		
+		updateData(dbObj);
+		
+		deleteData(dbObj);
+		
+		String sql="Select * from Customer";
+		selectData(dbObj,sql);
+		
+		dbObj.close();
+	
+	}
+	//Executing using statement
+	public static void selectData(Connection c,String sql) throws SQLException
+	{
+     Statement stmt=c.createStatement();
+     ResultSet rs=stmt.executeQuery(sql);
+	     while(rs.next())
+	     {
+	    	System.out.println(rs.getInt(1)); 
+	    	System.out.println(rs.getString(2)); 
+	    	System.out.println(rs.getInt(3)); 
+	     }
+     
+	 }
+	//Using prepared statement where dynamic data is needed
+    public static void insertData(Connection c,String sql) throws SQLException
+    {
+    	PreparedStatement ps=c.prepareStatement(sql);
+    	ps.setInt(1, 31);
+    	ps.setString(2,"Nimna");
+    	ps.setInt(3, 22);
+        ps.executeUpdate();
+    }
+    public static void updateData(Connection c) throws SQLException{
+    	Statement stmt=c.createStatement();
+    	String sql="UPDATE Customer SET Name ='Diana' where id=103";
+    	stmt.executeUpdate(sql);
+    }
+    public static void deleteData(Connection c) throws SQLException{
+    	Statement stmt=c.createStatement();
+    	String sql="DELETE from Customer WHERE id=101";
+    }
+}
+class DBConnection{
+	//Server Name
+	private static final String DRIVERNAME = "org.apache.derby.jdbc.EmbeddedDriver";
+    //create a db path
+	private static final String URL ="jdbc:derby:D:\\Users\\2785488\\MyDB;create=true";
+    //CREATE CONNECTION OBJECT
+	
+	public static Connection getConnection() {
+		Connection conn=null;
+		
+		try {
+			Class.forName(DRIVERNAME);
+			conn =DriverManager.getConnection(URL);
+			System.out.println("Connection Established.");
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return conn;
+	}
+}
